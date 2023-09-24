@@ -55,7 +55,7 @@ Merhaba! Ben Tarik Gokhan, bu blogda .NET Core, Yapay Zeka, Python ve React gibi
 ### İletişim
 
 - E-posta: [tarikgokhan@gmail.com](mailto:tarikgokhan@gmail.com)
-- LinkedIn: [Tarik Gokhan](https://www.linkedin.com/in/tar%C4%B1k-g%C3%B6khan-k%C4%B1z%C4%B1l%C4%B1rmak-a49ab525/)
+- LinkedIn: [Tarık Gökhan Kızılırmak](https://www.linkedin.com/in/tar%C4%B1k-g%C3%B6khan-k%C4%B1z%C4%B1l%C4%B1rmak-a49ab525/)
 - GitHub: [tarikgokhan](https://github.com/tarikgokhan)
 
 
