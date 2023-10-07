@@ -111,7 +111,7 @@ LEFT JOIN Tablo2 ON Tablo1.ID = Tablo2.ID;
 ```
 
 
-### INSERT: Yeni veri ekler.
+### INSERT
 
 INSERT INTO  Komutu Veri ekler.
 
@@ -121,7 +121,7 @@ VALUES (1, 'Ali', 'Veli');
 ```
 
 
-### UPDATE: Varolan veriyi günceller.
+### UPDATE
 
 UPDATE Komutu Tablo üzerinde belirlediğiniz kriterlerdeki satırları günceller.
 
@@ -131,7 +131,7 @@ SET Adi = 'Ahmet'
 WHERE ID = 1;
 ```
 
-### DELETE: Varolan veriyi siler.
+### DELETE
 
 DELETE Komutu Tablodan belirlediğiniz kriterlerdeki satırları siler.
 
@@ -156,7 +156,7 @@ GRANT SELECT ON employees TO some_user;
 
 Bu komut, some_user adlı kullanıcının employees tablosu üzerinde sorgu yapabilmesini sağlar.
 
-### REVOKE: Kullanıcılardan belirli yetkileri alır.
+### REVOKE
 
 REVOKE komutu, daha önce verilmiş olan izinleri geri alır. Örneğin, some_user adlı kullanıcının employees tablosu üzerindeki SELECT iznini geri almak için aşağıdaki komutu kullanabilirsiniz:
 
@@ -172,15 +172,30 @@ Bu komut, some_user adlı kullanıcının employees tablosu üzerinde sorgu yapa
 # TCL (Transaction Control Language) 
 
 TCL, veritabanı işlemlerini kontrol etmek için kullanılır.
+### BEGIN TRANSACTION
+```sql
+BEGIN TRANSACTION;
+```
+
+Begin Transaction dan sonra tablolarda yapılan veri ekleme ve güncelleme işlemleri tablolarda geçerli olmaz. Geçerli olma hali Commit komutu çalıştırıldığında olur.  Yani birkaç tabloya birden veri ekleme güncelleme işlemi yapılır ve bu işlemler ya kommit edilir yada rollback edilir. 
+
+
 
 ### COMMIT: Tüm işlemleri onaylar ve kalıcı hale getirir.
+
+Commit edildiğinde tablolarda yapılan değişiklikler geçerli olurken rollback edildiğinde tablolarda yapılan işlemler geçersiz olur.
+
+```sql
+COMMIT
+```
+
 ### ROLLBACK: Son COMMIT'e kadar olan değişiklikleri geri alır.
-### SAVEPOINT: İşlemlerin belirli bir noktasını kaydeder.
-### SET TRANSACTION: İşlem özelliklerini ayarlar.
 
+ROLLBACK  Transaction ı geri alır ve yapılan işlemler geçersiz olur.
 
-
-
+```sql
+ROLLBACK 
+```
 ### Fonksiyonlar ve Prosedürler
 
 COUNT()  Eleman sayar.
@@ -194,28 +209,4 @@ SUM()  Belirtilen sütundaki sayıları toplar ve toplam sayı olarak gösterir.
 
 ```sql
 SELECT SUM(SutunAdi) FROM TabloAdi;
-```
-
-
-### İndeksler ve Kısıtlamalar
-
-
-
-### Transactionlar 
-BEGIN TRANSACTION Transaction Başlatılır. 
-
-```sql
-BEGIN TRANSACTION;
-```
-
-Begin Transaction dan sonra tablolarda yapılan veri ekleme ve güncelleme işlemleri tablolarda geçerli olmaz. Geçerli olma hali Commit komutu çalıştırıldığında olur.  Yani birkaç tabloya birden veri ekleme güncelleme işlemi yapılır ve bu işlemler ya kommit edilir yada rollback edilir. Commit edildiğinde tablolarda yapılan değişiklikler geçerli olurken rollback edildiğinde tablolarda yapılan işlemler geçersiz olur.
-
-```sql
-COMMIT
-```
-
-ROLLBACK  Transaction ı geri alır ve yapılan işlemler geçersiz olur.
-
-```sql
-ROLLBACK 
 ```
