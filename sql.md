@@ -5,7 +5,7 @@
 
 T-SQL Veritabanı İşlemleri Aşağıdaki Gruplara Ayrılır.
 
-# DDL Komutları  
+## DDL Komutları  
 
 Bu komutlar veritabanı şemalarını ve yapılarını tanımlamak için kullanılır. DDL komutları şunları içerir:
 
@@ -62,7 +62,7 @@ DROP TABLE Users;
 Bir tablonun tüm verilerini istatistiklerini siler ve indexlerini sıfırlar.
 
 
-# DML Komutları 
+## DML Komutları 
 
 veritabanındaki verileri işlemek için kullanılır. DML komutları şunları içerir:
 
@@ -142,7 +142,7 @@ WHERE ID = 1;
 
 
 
-# DCL Komutları 
+## DCL Komutları 
 
 DCL Komutları veritabanı erişim kontrolü ve yetkilendirmeyi yönetir.
 
@@ -169,7 +169,7 @@ Bu komut, some_user adlı kullanıcının employees tablosu üzerinde sorgu yapa
 
 
 
-# TCL (Transaction Control Language) 
+## TCL (Transaction Control Language) 
 
 TCL, veritabanı işlemlerini kontrol etmek için kullanılır.
 ### BEGIN TRANSACTION
@@ -195,7 +195,9 @@ ROLLBACK  Transaction ı geri alır ve yapılan işlemler geçersiz olur.
 
 ```sql
 ROLLBACK 
+
 ```
+
 ### Fonksiyonlar ve Prosedürler
 
 COUNT()  Eleman sayar.
