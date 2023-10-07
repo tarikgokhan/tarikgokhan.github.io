@@ -5,66 +5,17 @@
 
 T-SQL Veritabanı İşlemleri Aşağıdaki Gruplara Ayrılır.
 
-# DDL, veritabanı şemalarını ve yapılarını tanımlamak için kullanılır. DDL komutları şunları içerir:
+# DDL Komutları  
+
+Bu komutlar veritabanı şemalarını ve yapılarını tanımlamak için kullanılır. DDL komutları şunları içerir:
 
 ### CREATE: Yeni bir tablo, veritabanı, indeks vb. oluşturur.
-### ALTER: Varolan bir tablonun yapısını değiştirir.
-### DROP: Varolan bir tablo, veritabanı, indeks vb. siler.
-### TRUNCATE: Bir tablonun tüm verilerini siler fakat yapısını korur.
-### DML (Data Manipulation Language)
 
-# DML, veritabanındaki verileri işlemek için kullanılır. DML komutları şunları içerir:
-
-### SELECT: Veritabanından veri çeker.
-### INSERT: Yeni veri ekler.
-### UPDATE: Varolan veriyi günceller.
-### DELETE: Varolan veriyi siler.
-### DCL (Data Control Language)
-
-# DCL, veritabanı erişim kontrolü ve yetkilendirmeyi yönetir.
-
-### GRANT: Kullanıcılara belirli yetkiler verir.
-### REVOKE: Kullanıcılardan belirli yetkileri alır.
-
-
-# TCL (Transaction Control Language) 
-
-TCL, veritabanı işlemlerini kontrol etmek için kullanılır.
-
-### COMMIT: Tüm işlemleri onaylar ve kalıcı hale getirir.
-### ROLLBACK: Son COMMIT'e kadar olan değişiklikleri geri alır.
-### SAVEPOINT: İşlemlerin belirli bir noktasını kaydeder.
-### SET TRANSACTION: İşlem özelliklerini ayarlar.
-
-Bu komutlardan Bazılarını örneklerle açıklayalım.
-
-# DDL İşlemleri 
-
-### Veritabanı Oluşturma
-Create Komutu ile veritabanı oluşturulur.
+Create Komutu ile bir nesne oluşturulur. CREATE DATABASE bir veritabanı oluşturur.
 
 ```sql
 CREATE DATABASE Nortwind;
 ```
-
-### Veritabanı Seçme
-
-Use Komutu Veritabanını Seçer
-
-```sql
-USE Nortwind;
-```
-
-### Veritabanı Silme
-
-DROP Komutu Veritabanını siler.
-
-```sql
-DROP DATABASE Nortwind;
-```
-
-
-### Tablo Oluşturma
 
 Veritabanında yeni bir tablo oluşturmak için aşağıdaki komut kullanılır.
 
@@ -76,36 +27,46 @@ CREATE TABLE Kullanici (
 );
 ```
 
-# DML İşlemleri 
+### ALTER: Varolan bir tablonun yapısını değiştirir.
 
-### Tabloya Satır Ekleme
-
-INSERT INTO  Komutu Veri ekler.
+PRIMARY KEY  Birincil anahtar oluşturur. Aşağıdaki komut satırı ile bir tabloya primarykey eklendiğini görüyoruz.
 
 ```sql
-INSERT INTO TabloAdi (ID, Adi, Soyadi)
-VALUES (1, 'Ali', 'Veli');
+ALTER TABLE Kullanici ADD PRIMARY KEY (ID);
 ```
 
-#### Tablodan Satır Güncelleme
-
-UPDATE Komutu Tablo üzerinde belirlediğiniz kriterlerdeki satırları günceller.
+FOREIGN KEY  Yabancı anahtar oluşturur.
 
 ```sql
-UPDATE TabloAdi
-SET Adi = 'Ahmet'
-WHERE ID = 1;
+
+ALTER TABLE TabloAdi
+ADD FOREIGN KEY (ID) REFERENCES DigerTablo(ID);
 ```
 
-### Tablodan Satır Silme
 
-DELETE Komutu Tablodan belirlediğiniz kriterlerdeki satırları siler.
+### DROP: Varolan bir tablo, veritabanı, indeks vb. siler.
+
+DROP Komutu bir nesnesi siler DROP DATABASE ile bir veritabanı silirken  DROP TABLE Users ile bir tabloyu silebilirsiniz.
 
 ```sql
-DELETE FROM Kullanici
-WHERE ID = 1;
+DROP DATABASE MyDB;
+```
+DROP TABLE komutu ile bir veritabanı içerisindeki tabloyu siler. Bu tabloyu ve içerisindeki verilerle herşeyi siler.
+
+```sql
+DROP TABLE Users;
 ```
 
+### TRUNCATE 
+
+Bir tablonun tüm verilerini istatistiklerini siler ve indexlerini sıfırlar.
+
+
+# DML Komutları 
+
+veritabanındaki verileri işlemek için kullanılır. DML komutları şunları içerir:
+
+### SELECT:
 
 SELECT  Veriyi sorgular.
 
@@ -150,6 +111,76 @@ LEFT JOIN Tablo2 ON Tablo1.ID = Tablo2.ID;
 ```
 
 
+### INSERT: Yeni veri ekler.
+
+INSERT INTO  Komutu Veri ekler.
+
+```sql
+INSERT INTO TabloAdi (ID, Adi, Soyadi)
+VALUES (1, 'Ali', 'Veli');
+```
+
+
+### UPDATE: Varolan veriyi günceller.
+
+UPDATE Komutu Tablo üzerinde belirlediğiniz kriterlerdeki satırları günceller.
+
+```sql
+UPDATE TabloAdi
+SET Adi = 'Ahmet'
+WHERE ID = 1;
+```
+
+### DELETE: Varolan veriyi siler.
+
+DELETE Komutu Tablodan belirlediğiniz kriterlerdeki satırları siler.
+
+```sql
+DELETE FROM Kullanici
+WHERE ID = 1;
+```
+
+
+
+# DCL Komutları 
+
+DCL Komutları veritabanı erişim kontrolü ve yetkilendirmeyi yönetir.
+
+### GRANT
+
+GRANT komutu, kullanıcılara veya rollerine belirli izinler verir. Örneğin, employees tablosu üzerinde SELECT izni vermek için aşağıdaki komutu kullanabilirsiniz:
+
+```sql
+GRANT SELECT ON employees TO some_user;
+```
+
+Bu komut, some_user adlı kullanıcının employees tablosu üzerinde sorgu yapabilmesini sağlar.
+
+### REVOKE: Kullanıcılardan belirli yetkileri alır.
+
+REVOKE komutu, daha önce verilmiş olan izinleri geri alır. Örneğin, some_user adlı kullanıcının employees tablosu üzerindeki SELECT iznini geri almak için aşağıdaki komutu kullanabilirsiniz:
+
+sql
+```sql
+REVOKE SELECT ON employees FROM some_user;
+```
+
+Bu komut, some_user adlı kullanıcının employees tablosu üzerinde sorgu yapabilme yeteneğini kaldırır.
+
+
+
+# TCL (Transaction Control Language) 
+
+TCL, veritabanı işlemlerini kontrol etmek için kullanılır.
+
+### COMMIT: Tüm işlemleri onaylar ve kalıcı hale getirir.
+### ROLLBACK: Son COMMIT'e kadar olan değişiklikleri geri alır.
+### SAVEPOINT: İşlemlerin belirli bir noktasını kaydeder.
+### SET TRANSACTION: İşlem özelliklerini ayarlar.
+
+
+
+
 ### Fonksiyonlar ve Prosedürler
 
 COUNT()  Eleman sayar.
@@ -168,20 +199,7 @@ SELECT SUM(SutunAdi) FROM TabloAdi;
 
 ### İndeksler ve Kısıtlamalar
 
-PRIMARY KEY  Birincil anahtar oluşturur. Aşağıdaki komut satırı ile bir tabloya primarykey eklendiğini görüyoruz.
 
-```sql
-ALTER TABLE Kullanici ADD PRIMARY KEY (ID);
-```
-
-FOREIGN KEY  Yabancı anahtar oluşturur.
-
-```sql
-
-ALTER TABLE TabloAdi
-ADD FOREIGN KEY (ID) REFERENCES DigerTablo(ID);
-
-```
 
 ### Transactionlar 
 BEGIN TRANSACTION Transaction Başlatılır. 
@@ -196,6 +214,8 @@ Begin Transaction dan sonra tablolarda yapılan veri ekleme ve güncelleme işle
 COMMIT
 ```
 
-```sql
 ROLLBACK  Transaction ı geri alır ve yapılan işlemler geçersiz olur.
+
+```sql
+ROLLBACK 
 ```
